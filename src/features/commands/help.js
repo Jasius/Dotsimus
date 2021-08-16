@@ -1,4 +1,5 @@
 const Discord = require('discord.js')
+const server = require('../../index.js')
 
 module.exports = {
     name: 'help',
@@ -12,11 +13,11 @@ Add Dotsimus to your server: http://add-bot.dotsimus.com`)
             .setColor('#ffbd2e')
             .addFields(
                 { name: 'Slash commands', value: 'You can see available slash commands and their use by typing `/` in the chat.', inline: false},
-                { name: '!watch', value: 'Sends a direct message to you whenever keyword that you track gets mentioned. \n Usage: `!watch <keyword>`' },
-                { name: '!uptime', value: 'Shows uptime of the bot. \n Usage: `!uptime`' },
-                { name: '!flags', value: 'Shows recent messages that were flagged with their values. \n Usage: `!flags <@User, user ID or none>`' },
-                { name: '!repeat', value: 'Admin only command which repeats what you say. \n Usage: `!repeat <phrase>`' },
-                { name: '!dotprefix', value: 'Changes bot prefix. \n Usage: `!dotprefix <prefix>`' }
+                { name: `${server.prefix}watch`, value: `Sends a direct message to you whenever keyword that you track gets mentioned. \n Usage: \`${server.prefix}watch <keyword>\`` },
+                { name: `${server.prefix}uptime`, value: `Shows uptime of the bot. \n Usage: \`${server.prefix}uptime\`` },
+                { name: `${server.prefix}flags`, value: `Shows recent messages that were flagged with their values. \n Usage: \`${server.prefix}flags <@User, user ID or none>\`` },
+                { name: `${server.prefix}repeat`, value: `Admin only command which repeats what you say. \n Usage: \`${server.prefix}repeat <phrase>\`` },
+                { name: `${server.prefix}dotprefix`, value: `Changes bot prefix. \n Usage: \`${server.prefix}dotprefix <prefix>\`` }
             );
         client.api.interactions(interaction.id, interaction.token).callback.post({
             data: {
