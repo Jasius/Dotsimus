@@ -62,7 +62,7 @@ module.exports = {
                             { name: '!watch', value: 'Sends a direct message to you whenever keyword that you track gets mentioned. \nUsage: `!watch <keyword>`' },
                             { name: '!repeat', value: 'Admin only command which repeats what you say. \nUsage: `!repeat <phrase>`' },
                             { name: '!dotprefix', value: 'Changes bot prefix. \nUsage: `!dotprefix <prefix>`' },
-                            { name: 'Test change', value: "itsWindows11's test' }
+                            { name: 'Test change', value: "itsWindows11's test" }
                         );
                 if (process.env.DEVELOPMENT !== 'true') api.postStats({
                     serverCount: guilds.size
