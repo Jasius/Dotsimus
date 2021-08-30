@@ -35,7 +35,7 @@ const rest = new REST({ version: '9' }).setToken(process.env.DEVELOPMENT !== 'tr
   try {
     console.info('Started refreshing application slash commands.');
     await rest.put(
-      process.env.DEVELOPMENT !== 'true' ? Routes.applicationGuildCommands('881606178109542402', devGuildId) : Routes.applicationGuildCommands(devClientId, devGuildId),
+      process.env.DEVELOPMENT !== 'true' ? Routes.applicationGuildCommands('881606178109542402', '855853563941748747') : Routes.applicationGuildCommands(devClientId, devGuildId),
       { body: commandsArray },
     );
     console.info('Successfully reloaded application slash commands.');
