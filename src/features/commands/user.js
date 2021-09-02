@@ -198,6 +198,12 @@ module.exports = {
                     case 'user':
                         sendWarningEmbed(client, interaction, interaction.options._hoistedOptions[0].value);
                         break;
+                    case 'user-id':
+                        sendWarningEmbed(client, interaction, interaction.options._hoistedOptions[0].value);
+                        break;
+                    case 'user-name':
+                        sendWarningEmbed(client, interaction, interaction.options._hoistedOptions[0].value);
+                        break;
                     default:
                         sendWarningEmbed(client, interaction, interaction.member.user.id);
                         break;
