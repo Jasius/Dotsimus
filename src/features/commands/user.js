@@ -179,7 +179,7 @@ module.exports = {
                 .setName('warnings')
                 .setDescription('Shows selected user infractions and warnings.')
                 .addUserOption(option =>
-                    option.setName('user')
+                    option.setName('user-name')
                         .setDescription('Select user or user ID.'))),
     execute (client, interaction, activeUsersCollection) {
         switch (interaction.options._subcommand) {
