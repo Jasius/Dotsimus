@@ -195,7 +195,7 @@ module.exports = {
                 break;
             case 'warnings':
                 switch (interaction.options._hoistedOptions[0]?.name) {
-                    case 'user'
+                    case 'user':
                     case 'user-id':
                     case 'user-name':
                         sendWarningEmbed(client, interaction, interaction.options._hoistedOptions[0].value);
