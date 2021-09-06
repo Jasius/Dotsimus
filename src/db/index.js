@@ -116,8 +116,8 @@ module.exports = {
       throw 'Failed to add a tracked word.'
     })
   },
-  removeWatchedKeyword: function (userId, serverId, watchedWord) {
-    const query = { userId, serverId, watchedWord }
+  removeWatchedKeyword: function (userId, serverId, watchedWords) {
+    const query = { userId, serverId, watchedWords }
     return new Promise((resolve, reject) => {
       WatchKeyword.findOneAndDelete(query, (error, data) => {
         if (error) {
