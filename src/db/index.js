@@ -126,9 +126,6 @@ module.exports = {
         'userId': userId,
         $pull: { 'watchedWords': { $each: [watchedWords]} }
 
-      }, {
-
-        upsert: true
       }, (error, data) => {
 
         if (error) {
