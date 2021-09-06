@@ -116,37 +116,7 @@ module.exports = {
       throw 'Failed to add a tracked word.'
     })
   },
-  removeWatchedKeyword: function (userId, serverId, watchedWords) {
-    const query = { userId, serverId, watchedWords }
-    return new Promise((resolve, reject) => {
 
-      WatchKeyword.findOneAndUpdate(query, {
-
-        'serverId': serverId,
-        'userId': userId,
-        $pull: { 'watchedWords': { [watchedWords] } }
-
-      }, (error, data) => {
-
-        if (error) {
-
-          console.error(error)
-          return reject(error)
-
-        }
-
-        resolve(data)
-
-      })
-
-    }).catch(e => {
-
-      console.error(e)
-
-      throw 'Failed to add a tracked word.'
-
-    })
-  },
   removeWatchedKeywords: function (userId, serverId) {
     const query = { userId, serverId }
     return new Promise((resolve, reject) => {
