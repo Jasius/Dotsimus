@@ -117,6 +117,21 @@ module.exports = {
     })
   },
   removeWatchedKeyword: function (userId, serverId, watchedWord) {
+    const query = { userId, serverId, watchedWord }
+    return new Promise((resolve, reject) => {
+      WatchKeyword.findOneAndDelete(query, (error, data) => {
+        if (error) {
+          console.error(error)
+          return reject(error)
+        }
+        resolve(data)
+      })
+    }).catch(e => {
+      console.error(e)
+      throw 'Failed to remove a tracked word.'
+    })
+  },
+  removeWatchedKeywords: function (userId, serverId) {
     const query = { userId, serverId }
     return new Promise((resolve, reject) => {
       WatchKeyword.findOneAndDelete(query, (error, data) => {
