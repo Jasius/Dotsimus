@@ -124,7 +124,7 @@ module.exports = {
 
         'serverId': serverId,
         'userId': userId,
-        $pull: { 'watchedWords': { $each: [watchedWords]} }
+        $pull: { 'watchedWords': { [watchedWords] } }
 
       }, (error, data) => {
 
