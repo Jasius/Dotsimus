@@ -117,7 +117,7 @@ module.exports = {
     })
   },
 
-  removeWatchedKeywords: function (userId, serverId) {
+  removeWatchedKeyword: function (userId, serverId) {
     const query = { userId, serverId }
     return new Promise((resolve, reject) => {
       WatchKeyword.findOneAndDelete(query, (error, data) => {
