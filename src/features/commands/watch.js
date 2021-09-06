@@ -14,6 +14,7 @@ module.exports = {
     async execute (client, interaction) {
         const keyword = interaction.options.get("keyword");
         const server = interaction.guild;
+        let watchedKeywordsCollection = db.getWatchedKeywords();
         const refreshWatchedCollection = () => (
              watchedKeywordsCollection = db.getWatchedKeywords()
         );
