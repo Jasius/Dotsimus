@@ -8,7 +8,7 @@ module.exports = {
         .setDescription('Removes a keyword or all keywords that you have watched before.')
         .addStringOption(option =>
             option.setName('keyword')
-                .setDescription('The keyword you will untrack, if keyword is unspecified then Dotsimus will remove all of your tracked keywords.')
+                .setDescription('The keyword you will untrack.')
         ),
     async execute (client, interaction) {
         const keyword = interaction.options.getString("keyword");
