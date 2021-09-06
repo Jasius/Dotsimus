@@ -21,7 +21,7 @@ module.exports = {
           interaction.reply({ content: `Keyword ${keyword} cannot be watched because the keyword has fewer than 3 characters.`, ephemeral: true });
         } else {
           try {
-            db.watchKeyword(message.author.id, server.id, trackingWord).then(resp => {
+            db.watchKeyword(interaction.member.id, server.id, trackingWord).then(resp => {
               refreshWatchedCollection().then(resp => db.getWatchedKeywords(message.author.id, server.id).then(keywords => {
                 const list = keywords[0].watchedWords.length === 6 ? keywords[0].watchedWords.slice(1) : keywords[0].watchedWords
                 const userToDM = client.users.cache.get(interaction.member.user.id);
