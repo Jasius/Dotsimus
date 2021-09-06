@@ -26,7 +26,15 @@ module.exports = {
            } catch (error) {
               interaction.reply({ content: `Something went horribly wrong while removing keyword.`, ephemeral: true });
            }
+         } else {
+            try {
+              db.removeWatchedKeywords(interaction.member.id, server.id, keyword).then(resp => {
+                 refreshWatchedCollection();
+                 interaction.reply({ content: `All keywords you have watched before has been removed successfully.`, ephemeral: true });
+              });
+            } catch (error) {
+                 interaction.reply({ content: `Something went horribly wrong while removing all keywords.`, ephemeral: true });
+            }
          }
-       }
     },
 };
