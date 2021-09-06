@@ -21,7 +21,7 @@ module.exports = {
            try {
              db.removeWatchedKeyword(interaction.member.id, server.id).then(resp => {
                  refreshWatchedCollection();
-                 interaction.reply({ content: `Something went horribly wrong while removing keyword.`, ephemeral: true });
+                 interaction.reply({ content: `Keyword removed successfully.`, ephemeral: true });
              });
            } catch (error) {
               interaction.reply({ content: `Something went horribly wrong while removing keyword.`, ephemeral: true });
@@ -31,7 +31,7 @@ module.exports = {
           try {
             db.removeWatchedKeywords(interaction.member.id, server.id, keyword).then(resp => {
                refreshWatchedCollection();
-               interaction.reply({ content: `Something went horribly wrong while removing all keywords.`, ephemeral: true });
+               interaction.reply({ content: `All keywords you have watched before has been removed successfully.`, ephemeral: true });
             });
           } catch (error) {
                interaction.reply({ content: `Something went horribly wrong while removing all keywords.`, ephemeral: true });
