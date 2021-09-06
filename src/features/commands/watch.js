@@ -23,7 +23,7 @@ module.exports = {
         } else {
           try {
             db.watchKeyword(interaction.member.id, server.id, keyword.toLowerCase()).then(resp => {
-              refreshWatchedCollection().then(resp => db.getWatchedKeywords(message.author.id, server.id).then(keywords => {
+              refreshWatchedCollection().then(resp => db.getWatchedKeywords(interaction.member.id, server.id).then(keywords => {
                 const list = keywords[0].watchedWords.length === 6 ? keywords[0].watchedWords.slice(1) : keywords[0].watchedWords;
                 interaction.reply({ content: `Keyword tracked successfully.`, ephemeral: true });
                 const userToDM = client.users.cache.get(interaction.member.user.id);
