@@ -9,7 +9,8 @@ module.exports = {
         .addStringOption(option =>
             option.setName('keyword')
                 .setDescription('The keyword you track.')
-                .setRequired(true),
+                .setRequired(true)
+        ),
     async execute (client, interaction) {
         const keyword = interaction.options.get("keyword");
         const server = interaction.guild;
