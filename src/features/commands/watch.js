@@ -12,7 +12,6 @@ module.exports = {
                 .setRequired(true)
         ),
     async execute (client, interaction) {
-        await interaction.deferReply();
         const keyword = interaction.options.get("keyword");
         const server = interaction.guild;
         let watchedKeywordsCollection = db.getWatchedKeywords();
@@ -26,13 +25,13 @@ module.exports = {
             db.watchKeyword(interaction.member.id, server.id, keyword.toLowerCase()).then(resp => {
               refreshWatchedCollection().then(resp => db.getWatchedKeywords(message.author.id, server.id).then(keywords => {
                 const list = keywords[0].watchedWords.length === 6 ? keywords[0].watchedWords.slice(1) : keywords[0].watchedWords;
-                interaction.editReply({ content: `Keyword tracked successfully.`, ephemeral: true });
+                interaction.reply({ content: `Keyword tracked successfully.`, ephemeral: true });
                 const userToDM = client.users.cache.get(interaction.member.user.id);
                 userToDM.send(`\`${keyword}\` keyword tracking is set up successfully on **${server.name}** server.\nCurrently tracked server keywords:\n${list.map((keyword, index) => `${index + 1}. ${keyword} \n`).join('')}\nYou can track up to 5 keywords.`);
               }))
             });
           } catch (error) {
-            interaction.editReply({ content: `You must allow direct messages from members in this server for this feature to work.\nEnable direct messages in **Privacy Settings > Allow direct messages from server members**.`, ephemeral: true });
+            interaction.reply({ content: `You must allow direct messages from members in this server for this feature to work.\nEnable direct messages in **Privacy Settings > Allow direct messages from server members**.`, ephemeral: true });
           }
         }
     },
