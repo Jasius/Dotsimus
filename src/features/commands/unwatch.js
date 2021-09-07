@@ -19,7 +19,8 @@ module.exports = {
         );
         if (keyword) {
            try {
-             db.removeWatchedKeyword(interaction.member.id, server.id, keyword).then(resp => {
+             // remove one keyword
+             db.removeWatchedKeyword1(interaction.member.id, server.id, keyword).then(resp => {
                  refreshWatchedCollection();
                  interaction.reply({ content: `Keyword removed successfully.`, ephemeral: true });
              });
