@@ -22,7 +22,7 @@ module.exports = {
              // remove one keyword
              db.removeWatchedKeyword1(interaction.member.id, server.id, keyword).then(resp => {
                  refreshWatchedCollection();
-                 interaction.reply({ content: `Keyword removed successfully.`, ephemeral: true });
+                 interaction.reply({ content: `Keyword "${keyword}" removed successfully.`, ephemeral: true });
              });
            } catch (error) {
               interaction.reply({ content: `Something went horribly wrong while removing keyword.`, ephemeral: true });
