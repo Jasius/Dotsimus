@@ -135,7 +135,7 @@ module.exports = {
     const query = { userId, serverId }
     return new Promise((resolve, reject) => {
       WatchKeyword.findOneAndUpdate(query, {
-        $pull: { 'watchedWords': { $each: [watchedWords], $slice: -6 } }
+        $pull: { 'watchedWords': { $in: [watchedWords] } }
       }, (error, data) => {
         if (error) {
           console.error(error)
