@@ -500,7 +500,7 @@ client.on('messageCreate', message => {
 	           .setDescription('You can now use it along with other slash commands')
 	           .setTimestamp();
 
-        message.channel.send({ embeds: [watchCommandSlashMigrationNoticeEmbed] });
+        message.channel.send({ embeds: [watchCommandSlashMigrationNoticeEmbed1] });
         break;
       case 'setalerts':
         message.channel.send(user.isAdmin ? 'true' : 'false')
