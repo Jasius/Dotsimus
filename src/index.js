@@ -462,7 +462,7 @@ client.on('messageCreate', message => {
         break;
       case 'watch':
       case 'track':
-        if (!args[0] || args[0]?.length < 3) {
+        /*if (!args[0] || args[0]?.length < 3) {
           message.react("❌")
           message.author.send('❌ Keyword must be longer than 2 characters.')
         } else {
@@ -479,14 +479,28 @@ client.on('messageCreate', message => {
           } catch (error) {
             message.reply('allow direct messages from server members in this server for this feature to work.')
           }
-        }
+        }*/
+        const watchCommandSlashMigrationNoticeEmbed = new MessageEmbed()
+	        .setColor('#0099ff')
+	        .setTitle('The !watch (or !track) command has been migrated to a new home!')
+	        .setDescription('You can now use it along with other slash commands')
+	        .setTimestamp();
+
+        message.channel.send({ embeds: [watchCommandSlashMigrationNoticeEmbed] });
         break;
       case 'unwatch':
       case 'untrack':
-        db.removeWatchedKeyword(message.author.id, server.id).then(resp => {
+        /*db.removeWatchedKeyword(message.author.id, server.id).then(resp => {
           refreshWatchedCollection()
         })
-        message.react("✅")
+        message.react("✅")*/
+        const watchCommandSlashMigrationNoticeEmbed = new MessageEmbed()
+	           .setColor('#0099ff')
+	           .setTitle('The !unwatch (or !untrack) command has been migrated to a new home!')
+	           .setDescription('You can now use it along with other slash commands')
+	           .setTimestamp();
+
+        message.channel.send({ embeds: [watchCommandSlashMigrationNoticeEmbed] });
         break;
       case 'setalerts':
         message.channel.send(user.isAdmin ? 'true' : 'false')
