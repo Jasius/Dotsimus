@@ -494,7 +494,7 @@ client.on('messageCreate', message => {
           refreshWatchedCollection()
         })
         message.react("✅")*/
-        const watchCommandSlashMigrationNoticeEmbed = new MessageEmbed()
+        const watchCommandSlashMigrationNoticeEmbed1 = new MessageEmbed()
 	           .setColor('#0099ff')
 	           .setTitle('The !unwatch (or !untrack) command has been migrated to a new home!')
 	           .setDescription('You can now use it along with other slash commands')
