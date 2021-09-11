@@ -101,7 +101,7 @@ module.exports = {
       WatchKeyword.findOneAndUpdate(query, {
         'serverId': serverId,
         'userId': userId,
-        $push: { 'watchedWords': { $each: [watchedWords], $slice: -6 } }
+        $push: { 'watchedWords': { $each: [watchedWords], $slice: -5 } }
       }, {
         upsert: true
       }, (error, data) => {
@@ -116,8 +116,8 @@ module.exports = {
       throw 'Failed to add a tracked word.'
     })
   },
-  removeWatchedKeyword: function (userId, serverId) {
-    const query = { userId, serverId }
+  removeWatchedKeyword: function (userId, serverId, watchedWord) {
+    const query = { userId, serverId, watchedWord }
     return new Promise((resolve, reject) => {
       WatchKeyword.findOneAndDelete(query, (error, data) => {
         if (error) {
