@@ -2,4 +2,3 @@ node_modules/
 /.env
 /logs.log
 /package-lock.json
-/events.json
