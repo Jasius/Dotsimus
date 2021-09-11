@@ -490,17 +490,17 @@ client.on('messageCreate', message => {
         break;
       case 'unwatch':
       case 'untrack':
-        db.removeWatchedKeyword(message.author.id, server.id).then(resp => {
+        /*db.removeWatchedKeyword(message.author.id, server.id).then(resp => {
           refreshWatchedCollection()
         })
-        message.react("✅");
-        /*const watchCommandSlashMigrationNoticeEmbed1 = new MessageEmbed()
+        message.react("✅");*/
+        const watchCommandSlashMigrationNoticeEmbed1 = new MessageEmbed()
 	           .setColor('#0099ff')
 	           .setTitle('The !unwatch (or !untrack) command has been migrated to a new home!')
 	           .setDescription('You can now use it along with other slash commands.\nType `/unwatch` to use it.')
 	           .setTimestamp();
 
-        message.channel.send({ embeds: [watchCommandSlashMigrationNoticeEmbed1] });*/
+        message.channel.send({ embeds: [watchCommandSlashMigrationNoticeEmbed1] });
         break;
       case 'setalerts':
         message.channel.send(user.isAdmin ? 'true' : 'false')
