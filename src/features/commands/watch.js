@@ -26,7 +26,6 @@ module.exports = {
                 .setDescription('The keyword you want to track.')
                 .setRequired(true))),
     async execute(client, interaction) {
-
         let keyword = interaction.options.getString('keyword')
         let trackingWord;
         let watchedKeywordsCollection = db.getWatchedKeywords(),
@@ -91,7 +90,6 @@ module.exports = {
             })
             return
         } else {
-
             var watching = [];
             var length;
             db.getWatchedKeywords(interaction.user.id, interaction.guild.id).then(keywords => {
