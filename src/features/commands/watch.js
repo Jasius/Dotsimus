@@ -24,6 +24,10 @@ module.exports = {
             .addStringOption(option =>
                 option.setName('keyword')
                 .setDescription('The keyword you want to track.')
+                .setRequired(true))
+            .addBooleanOption(option =>
+                option.setName('is-exact-match')
+                .setDescription('Choose whether you want to watch the word exactly or not.')
                 .setRequired(true))),
     async execute(client, interaction) {
         let keyword = interaction.options.getString('keyword')
@@ -33,6 +37,7 @@ module.exports = {
         const refreshWatchedCollection = () => (
             watchedKeywordsCollection = db.getWatchedKeywords()
         )
+        const exactMatchBoolean = interaction.options.getBoolean('is-exact-match');
 
         if (interaction.options._subcommand === 'remove') {
             const keywordList = new MessageActionRow();
@@ -120,7 +125,7 @@ module.exports = {
                     return
                 } else {
                     try {
-                        db.watchKeyword(interaction.user.id, interaction.guild.id, trackingWord).then(resp => {
+                        db.watchKeyword(interaction.user.id, interaction.guild.id, trackingWord, exactMatchBoolean).then(resp => {
                             refreshWatchedCollection().then(resp => db.getWatchedKeywords(interaction.user.id, interaction.guild.id).then(keywords => {
                                 const list = keywords[0].watchedWords.length > 5 ? keywords[0].watchedWords.slice(1) : keywords[0].watchedWords
                                 

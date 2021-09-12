@@ -170,6 +170,7 @@ client.on('messageCreate', message => {
   watchedKeywordsCollection.then(entireCollection => {
     entireCollection.filter(watchedKeywordsCollection => watchedKeywordsCollection.serverId === server.id).map(watchedKeywordsGuild => {
       const words = watchedKeywordsGuild.watchedWords;
+      const isExactMatch = watchedKeywordsGuild.isExactMatch;
       const isWatcherActive = activeUsersCollection.filter(userActivity => userActivity.userId === watchedKeywordsGuild.userId).filter(function (serverFilter) {
         return (serverFilter.serverId === server.id);
       }).length > 0;
@@ -199,19 +200,29 @@ client.on('messageCreate', message => {
                 .setTimestamp()
                 .setFooter(`Stop tracking with !unwatch command in ${server.name} server.`)
                 .setColor('#7289da'),
-                trackingNoticeUser = new MessageEmbed()
+                /*trackingNoticeUser = new MessageEmbed()
                   .setTitle(`❗ Tracked keyword triggered`)
                   .setDescription(`**"${word}"** mentioned in [**${server.name}/${message.channel.name}**.](https://discordapp.com/channels/${server.id}/${message.channel.id}/${message.id})`)
                   .setTimestamp()
                   .setFooter(`Stop tracking with !unwatch command in ${server.name} server.`)
-                  .setColor('#7289da');
-              // enabled informative tracking for everyone
-              user.send((message.channel.permissionsFor(watchedKeywordsGuild.userId).serialize()['KICK_MEMBERS'] || message.channel.permissionsFor(watchedKeywordsGuild.userId).serialize()['BAN_MEMBERS']) ? { embeds: [trackingNoticeMod] } : { embeds: [trackingNoticeMod] }).catch(error => {
+                  .setColor('#7289da');*/
+	        if (isExactMatch && message.content.includes(word)) {
+	      	   // DM only if word is in message content and user wants it to be exactly the same
+                   user.send({ embeds: [trackingNoticeMod] }).catch(error => {
+                     console.info(`Could not send DM to ${watchedKeywordsGuild.userId}, tracking is being disabled.`);
+                     db.removeWatchedKeyword(watchedKeywordsGuild.userId, server.id).then(resp => {
+                      refreshWatchedCollection()
+                     })
+                   });
+	 	   return;
+	        }
+              user.send({ embeds: [trackingNoticeMod] }).catch(error => {
                 console.info(`Could not send DM to ${watchedKeywordsGuild.userId}, tracking is being disabled.`);
                 db.removeWatchedKeyword(watchedKeywordsGuild.userId, server.id).then(resp => {
                   refreshWatchedCollection()
                 })
               });
+
             } catch (error) {
               console.error({
                 author: message.author.id,
