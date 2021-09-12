@@ -189,7 +189,7 @@ client.on('messageCreate', message => {
               if (watchedKeywordsGuild.userId === message.author.id
                 || isWatcherActive
                 || !message.channel.permissionsFor(watchedKeywordsGuild.userId).serialize()['VIEW_CHANNEL']) return;
-	      const regexForMatch = new RegExp(`/\b${word}\b/gi`);
+	      const regexForMatch = new RegExp(`/\b${word}\b/`);
               const trackingNoticeMod = new MessageEmbed()
                 .setTitle(`❗ Tracked keyword "${word}" triggered`)
                 .setDescription(message.content)
