@@ -189,7 +189,6 @@ client.on('messageCreate', message => {
               if (watchedKeywordsGuild.userId === message.author.id
                 || isWatcherActive
                 || !message.channel.permissionsFor(watchedKeywordsGuild.userId).serialize()['VIEW_CHANNEL']) return;
-	      const regexForMatch = new RegExp(`(^|\W)${word}($|\W)/g/i`);
               const trackingNoticeMod = new MessageEmbed()
                 .setTitle(`❗ Tracked keyword "${word}" triggered`)
                 .setDescription(message.content)
@@ -207,22 +206,12 @@ client.on('messageCreate', message => {
                   .setTimestamp()
                   .setFooter(`Stop tracking with !unwatch command in ${server.name} server.`)
                   .setColor('#7289da');*/
-	        if (isExactMatch && message.content.match(regexForMatch)) {
-	      	   // DM only if word is in message content and user wants it to be exactly the same
-                   user.send({ embeds: [trackingNoticeMod] }).catch(error => {
-                     console.info(`Could not send DM to ${watchedKeywordsGuild.userId}, tracking is being disabled.`);
-                     db.removeWatchedKeyword(watchedKeywordsGuild.userId, server.id).then(resp => {
-                      refreshWatchedCollection()
-                     })
-                   });
-	 	   return;
-	        }
-              user.send({ embeds: [trackingNoticeMod] }).catch(error => {
-                console.info(`Could not send DM to ${watchedKeywordsGuild.userId}, tracking is being disabled.`);
-                db.removeWatchedKeyword(watchedKeywordsGuild.userId, server.id).then(resp => {
-                  refreshWatchedCollection()
-                })
-              });
+                 user.send({ embeds: [trackingNoticeMod] }).catch(error => {
+                   console.info(`Could not send DM to ${watchedKeywordsGuild.userId}, tracking is being disabled.`);
+                   db.removeWatchedKeyword(watchedKeywordsGuild.userId, server.id).then(resp => {
+                    refreshWatchedCollection()
+                   })
+                 });
 
             } catch (error) {
               console.error({
