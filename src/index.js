@@ -200,7 +200,7 @@ client.on('messageCreate', message => {
                 )
                 .setTimestamp()
                 .setFooter(`Stop tracking with !unwatch command in ${server.name} server.`)
-                .setColor('#7289da'),
+                .setColor('#7289da');
                 /*trackingNoticeUser = new MessageEmbed()
                   .setTitle(`❗ Tracked keyword triggered`)
                   .setDescription(`**"${word}"** mentioned in [**${server.name}/${message.channel.name}**.](https://discordapp.com/channels/${server.id}/${message.channel.id}/${message.id})`)
